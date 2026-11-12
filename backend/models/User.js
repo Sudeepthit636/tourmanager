@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     university: { type: String },
     address: { type: String },
+    role: { type: String, enum: ['customer','admin'], default:'customer'}          // new role added to the schema
 });
 
 userSchema.pre('save', async function (next) {
