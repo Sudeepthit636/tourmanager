@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axiosInstance from '../axiosConfig';
 import TourForm from '../components/TourForm';
-//import TourList from '../components/TourList';
+import TourList from '../components/TourList';
 import { useAuth } from '../context/AuthContext';
 
 const Tours = () => {
@@ -32,7 +32,7 @@ const Tours = () => {
         editingTour={editingTour}
         setEditingTour={setEditingTour}
       />
-
+       <TourList tours={tours} setTours={setTours} setEditingTour={setEditingTour} />
     </div>
   );
 };
