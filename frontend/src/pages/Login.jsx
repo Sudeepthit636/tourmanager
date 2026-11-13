@@ -16,8 +16,9 @@ const Login = () => {
 
       if(response.data.role === 'admin') {
         navigate('/tours');
-      }else { 
-        navigate('/tasks');
+      }
+      else { 
+        navigate('/bookings');
       }
     } catch (error) {
       alert('Login failed. Please try again.');

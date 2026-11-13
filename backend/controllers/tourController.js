@@ -29,11 +29,10 @@ const getTours = async(req,res) => {
  */
 
 const addTour = async(req,res) => {
-    console.log("incoming body",req.body);
+    // console.log("incoming body",req.body);
     const{tourName,maxGroupSize,source, destination, dateFrom, dateTo, inclusions, exclusions, pricePerPerson,userId} = req.body;
     try {
         const tour = await Tour.create({tourName,maxGroupSize,source, destination, dateFrom, dateTo, inclusions, exclusions, pricePerPerson,userId:req.user ? req.user.id: userId});
-        console.log("response",res.body);
         res.status(201).json(tour);
     }catch(error){
         console.log("==message Mongoose error");
@@ -55,7 +54,7 @@ const updateTour = async(req,res) => {
     const{tourName, maxGroupSize, source, destination, dateFrom, dateTo, inclusions, exclusions, pricePerPerson,userId} = req.body;
     try{
         const tour = await Tour.findById(req.params.id);
-        console.log("tourid ",tour);
+        //console.log("tourid ",tour);
         if(!tour)return res.status(404).json({message:'Tour not found'});
         
         tour.tourName = tourName || tour.tourName
