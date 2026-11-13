@@ -17,7 +17,7 @@ const Navbar = () => {
         {user ? (
           <>
             {user.role === 'admin' ? (
-              <Link to="/tours" className="mr-4">Tours</Link>
+              <Link to="/tours" className="mr-4">Tours</Link>           
             ) : (
               <>
                 <Link to="/tasks" className="mr-4">Tasks</Link>

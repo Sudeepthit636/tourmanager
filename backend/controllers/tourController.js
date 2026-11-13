@@ -11,7 +11,6 @@
 const Tour = require('../models/Tour').default;
 
 const getTours = async(req,res) => {
-
     try {
         const tours = await Tour.find({});               // Find all Tours
         res.json(tours);
@@ -34,7 +33,7 @@ const addTour = async(req,res) => {
     const{tourName,maxGroupSize,source, destination, dateFrom, dateTo, inclusions, exclusions, pricePerPerson,userId} = req.body;
     try {
         const tour = await Tour.create({tourName,maxGroupSize,source, destination, dateFrom, dateTo, inclusions, exclusions, pricePerPerson,userId:req.user ? req.user.id: userId});
-        console.log("response",tour.body);
+        console.log("response",res.body);
         res.status(201).json(tour);
     }catch(error){
         console.log("==message Mongoose error");
@@ -52,14 +51,47 @@ const addTour = async(req,res) => {
  * For completed ?? - nullish coalescing operator it will fallback to old value if completed is null or undefined
  * updates tour details in database
  */
+const updateTour = async(req,res) => {
+    const{tourName, maxGroupSize, source, destination, dateFrom, dateTo, inclusions, exclusions, pricePerPerson,userId} = req.body;
+    try{
+        const tour = await Tour.findById(req.params.id);
+        console.log("tourid ",tour);
+        if(!tour)return res.status(404).json({message:'Tour not found'});
+        
+        tour.tourName = tourName || tour.tourName
+        tour.maxGroupSize = maxGroupSize || tour.maxGroupSize
+        tour.source = source || tour.source
+        tour.destination = destination || tour.destination
+        tour.dateFrom = dateFrom || tour.dateFrom
+        tour.dateTo = dateTo || tour.dateTo
+        tour.inclusions = inclusions || tour.inclusions
+        tour.exclusions = exclusions || tour.exclusions
+        tour.pricePerPerson = pricePerPerson || tour.pricePerPerson
+        //tour.completed = completed ?? tour.completed             // for future development , this can be updated based on the dateTo 
+        
+        const updatedTour = await tour.save();
+        res.json(updatedTour);      
+    }catch(error){
+        res.status(500).json({message:error.message});
+    }
+};
 
 
 /**
  * function to delete tour
  * 
  */
+const deleteTour = async(req,res) => {
+try{
+    const tour = await Tour.findById(req.params.id);
+    if(!tour)return res.status(404).json({message:'Tour not found'});
 
+    await tour.remove();
+    res.json({message:'Tour deleted'});
+    }catch(error){
+        res.status(500).json({message:error.message});
+    }
 
+};
 
-module.exports = {getTours,addTour};
-//module.exports = {getTours,addTour,updateTour,deleteTour};
+module.exports = {getTours,addTour,updateTour,deleteTour};

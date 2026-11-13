@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import axiosInstance from '../axiosConfig';
 
+const convertDate = (reqDate) => {
+  if (!reqDate) return "";
+  return reqDate.split("T")[0];
+};
 
 const TourForm = ({ tours, setTours, editingTour, setEditingTour }) => {
   const { user } = useAuth();
@@ -14,8 +18,8 @@ const TourForm = ({ tours, setTours, editingTour, setEditingTour }) => {
         maxGroupSize: editingTour.maxGroupSize,
         source: editingTour.source,
         destination: editingTour.destination,
-        dateFrom: editingTour.dateFrom,
-        dateTo: editingTour.dateTo,
+        dateFrom: editingTour.dateFrom.slice(0,10),
+        dateTo: editingTour.dateTo.slice(0,10),
         inclusions: editingTour.inclusions,
         exclusions: editingTour.exclusions,
         pricePerPerson: editingTour.pricePerPerson,
@@ -41,7 +45,7 @@ const TourForm = ({ tours, setTours, editingTour, setEditingTour }) => {
         setTours([...tours, response.data]);
       }
       setEditingTour(null);
-      setFormData({ title: '', description: '', deadline: '' });
+      setFormData({ tourName: '', maxGroupSize: '', source: '', destination: '', dateFrom:'', dateTo: '',inclusions: '', exclusions: '', pricePerPerson: '', });
     } catch (error) {
       alert('Failed to save tour.');
     }
@@ -83,7 +87,7 @@ const TourForm = ({ tours, setTours, editingTour, setEditingTour }) => {
       
       <input
         type="date"
-        value={formData.dateFrom}
+        value={formData.dateFrom.slice(0,10)}
         onChange={(e) => setFormData({ ...formData, dateFrom: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
       />
