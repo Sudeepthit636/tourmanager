@@ -30,9 +30,11 @@ const getTours = async(req,res) => {
  */
 
 const addTour = async(req,res) => {
-    const{tourName,source, destination, dateFrom, dateTo, inclusions, exclusions, pricePerPerson,userId} = req.body;
+    console.log("incoming body",req.body);
+    const{tourName,maxGroupSize,source, destination, dateFrom, dateTo, inclusions, exclusions, pricePerPerson,userId} = req.body;
     try {
-        const tour = await Tour.create({tourName,source, destination, dateFrom, dateTo, inclusions, exclusions, pricePerPerson,userId:req.user ? req.user.id: userId});
+        const tour = await Tour.create({tourName,maxGroupSize,source, destination, dateFrom, dateTo, inclusions, exclusions, pricePerPerson,userId:req.user ? req.user.id: userId});
+        console.log("response",tour.body);
         res.status(201).json(tour);
     }catch(error){
         console.log("==message Mongoose error");
