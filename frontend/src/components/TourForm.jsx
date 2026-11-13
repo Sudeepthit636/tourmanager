@@ -57,7 +57,7 @@ const TourForm = ({ tours, setTours, editingTour, setEditingTour }) => {
       <label for = "tourName">Tour Name:</label>
       <input
         type="text"
-        placeholder="Tour Name - 5 Days Trip"
+        placeholder="Tour Name - <Number of Days> Trip"
         value={formData.tourName}
         onChange={(e) => setFormData({ ...formData, tourName: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
