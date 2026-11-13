@@ -3,11 +3,11 @@
  * 1st line require - imports the Mongoose Tour model from the models
  * folder so that code can interact with the tour collection in the database
  * 
- * getTours is an async function taking request and response objexts
- * queries the database to find all tours for logged in user
+ * getTours is an async function taking request and response objects
+ * queries the database to find all tours for
  * send all tours in JSON format
  */
-//adding more details here 
+
 const Tour = require('../models/Tour').default;
 
 const getTours = async(req,res) => {
@@ -46,7 +46,7 @@ const addTour = async(req,res) => {
  * using Mongoose
  * First searches for Tour by Id
  * updating field values conditionally i.e. if new values are
- * there in reguest bosy - it updates otherwise it keeps the existing value ||
+ * there in reguest body - it updates otherwise it keeps the existing value ||
  * For completed ?? - nullish coalescing operator it will fallback to old value if completed is null or undefined
  * updates tour details in database
  */
@@ -66,7 +66,7 @@ const updateTour = async(req,res) => {
         tour.inclusions = inclusions || tour.inclusions
         tour.exclusions = exclusions || tour.exclusions
         tour.pricePerPerson = pricePerPerson || tour.pricePerPerson
-        //tour.completed = completed ?? tour.completed             // for future development , this can be updated based on the dateTo 
+        //tour.completed = completed ?? tour.completed             // for future development , this can be updated based whether dateTo is in past
         
         const updatedTour = await tour.save();
         res.json(updatedTour);      

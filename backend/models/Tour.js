@@ -18,7 +18,7 @@ const tourSchema = new Schema({
     inclusions: { type: String, required: true },
     exclusions: { type: String, required: true},
     pricePerPerson: { type: Number, required: true},
-    //completed: { type: Boolean, default: false },           // for further development to identify active and completed tour packages
+    //completed: { type: Boolean, default: false },           // for future development, mark tour as completed if toDate is in past
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: false }, // for future use
 });
 
