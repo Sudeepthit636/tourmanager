@@ -21,15 +21,13 @@ const TourList = ({ tours, setTours, setEditingTour }) => {
     <div>
       {tours.map((tour) => (
         <div key={tour._id} className="bg-gray-100 p-4 mb-4 rounded shadow">
-          <h2 className="font-bold">{tour.tourName}</h2>
-          <p>{tour.maxGroupSize}</p>
-          <p>{tour.source}</p>
-          <p>{tour.destination}</p>
-          <p>{tour.dateFrom}</p>
-          <p>{tour.dateTo}</p>
-          <p>{tour.inclusions}</p>
-          <p>{tour.exclusions}</p>
-          <p>{tour.pricePerPerson}</p>
+          <h2 className="font-bold">Tour: {tour.tourName}</h2>
+          <p>Maximum Group Size: {tour.maxGroupSize}</p>
+          <p>Source: {tour.source}</p>
+          <p>Destination: {tour.destination}</p>
+          <p>From Date: {tour.dateFrom.slice(0,10)}</p>
+          <p>To Date: {tour.dateTo.slice(0,10)}</p>
+          <p>Price Per Person: {tour.pricePerPerson}</p>
           <div className="mt-2">
             <button
               onClick={() => setEditingTour(tour)}

@@ -54,14 +54,16 @@ const TourForm = ({ tours, setTours, editingTour, setEditingTour }) => {
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded mb-6">
       <h1 className="text-2xl font-bold mb-4">{editingTour ? 'Edit Tour' : 'Add Tour'}</h1>
+      <label for = "tourName">Tour Name:</label>
       <input
         type="text"
-        placeholder="Tour Name"
+        placeholder="Tour Name - <Number of Days> Trip"
         value={formData.tourName}
         onChange={(e) => setFormData({ ...formData, tourName: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
       />
-
+      
+      <label for = "maxGroupSize">Maximum Group Size:</label>
       <input
         type="text"
         placeholder="Maximum Group Size"
@@ -69,22 +71,27 @@ const TourForm = ({ tours, setTours, editingTour, setEditingTour }) => {
         onChange={(e) => setFormData({ ...formData, maxGroupSize: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
       />
+
+      <label for = "source">Origin:</label>
       <input
         type="text"
-        placeholder="Source"
+        placeholder="Origin Place"
         value={formData.source}
         onChange={(e) => setFormData({ ...formData, source: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
       />
+    
+    
+    <label for = "destination">Destination:</label>
       <input
         type="text"
-        placeholder="Destination"
+        placeholder="Destination Place"
         value={formData.destination}
         onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
       />
       
-      
+      <label for = "dateFrom">From Date:</label>
       <input
         type="date"
         value={formData.dateFrom.slice(0,10)}
@@ -92,6 +99,7 @@ const TourForm = ({ tours, setTours, editingTour, setEditingTour }) => {
         className="w-full mb-4 p-2 border rounded"
       />
 
+<label for = "dateTo">To Date:</label>
       <input
         type="date"
         value={formData.dateTo}
@@ -99,24 +107,29 @@ const TourForm = ({ tours, setTours, editingTour, setEditingTour }) => {
         className="w-full mb-4 p-2 border rounded"
       />
 
+      <label for = "inclusions">Inclusions List:</label>
+
       <input
         type="text"
-        placeholder="Inclusions"
+        placeholder="Inclusions List"
         value={formData.inclusions}
         onChange={(e) => setFormData({ ...formData, inclusions: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
       />
+
+      <label for = "exclusions">Exclusions List:</label>
       <input
         type="text"
-        placeholder="Exclusions"
+        placeholder="Exclusions List"
         value={formData.exclusions}
         onChange={(e) => setFormData({ ...formData, exclusions: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
       />
       
+      <label for = "pricePerPerson">Price Per Person:</label>
       <input
         type="Number"
-        placeholder="Cost Per Person in $"
+        placeholder="Price Per Person in $"
         value={formData.pricePerPerson}
         onChange={(e) => setFormData({ ...formData, pricePerPerson: e.target.value })}
         className="w-full mb-4 p-2 border rounded"
