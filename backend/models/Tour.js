@@ -10,6 +10,7 @@ const tourSchema = new Schema({
         unique: true
         },
     tourName: { type: String, required: true},
+    maxGroupSize: { type: Number, required: true },
     source: { type: String, required: true },
     destination: { type: String, required: true},
     dateFrom: { type: Date, required: true },
